@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_green_dark"
+        android:gravity="top"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/menuBtnLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/menuTitleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="Carte"
+            android:textSize="25dp" />
+
+        <ImageButton
+            android:id="@+id/menuBtnRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_list" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
