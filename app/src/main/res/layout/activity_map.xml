@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
     <include
         android:id="@+id/include"
         layout="@layout/action_bar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +18,115 @@
 
     </include>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+
+    <ImageButton
+        android:id="@+id/centerPositionBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="107dp"
+        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:elevation="2dp"
+        android:onClick="centerPositionClick"
+        android:src="@drawable/ic_centerpos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map" />
+
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:ems="10"
+        android:hint="recherche une adresse"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="22dp" />
+
+    <LinearLayout
+        android:id="@+id/detailSchoolLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:elevation="2dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/OKKObtn"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_ok" />
+
+        <LinearLayout
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Textview"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                tools:text="Ecole1" />
+
+            <TextView
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Textview"
+                tools:text="Rue de la 1234566" />
+
+            <TextView
+                android:id="@+id/txtNbEleves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:text="TextView"
+                tools:text="200 élèves" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/closeBoxMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_delete" />
+
+            <TextView
+                android:id="@+id/txtnbKm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Textview"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="25dp"
+                tools:text="20Km" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -31,9 +134,11 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/include"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintTop_toBottomOf="@+id/include"
         tools:context="vbr.ynov.com.projetschools.mapActivity" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -62,12 +62,9 @@
         android:id="@+id/cleanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/saveLoginCheckBox"
         android:layout_below="@+id/saveLoginCheckBox"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="62dp"
         android:onClick="onCleanClick"
         android:text="Vider" />
 
@@ -77,10 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/cleanButton"
         android:layout_alignBottom="@+id/cleanButton"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:layout_toEndOf="@+id/saveLoginCheckBox"
-        android:layout_toRightOf="@+id/saveLoginCheckBox"
+        android:layout_alignEnd="@+id/txtMdp"
         android:onClick="OnValidClick"
         android:text="Valider" />
 

@@ -6,6 +6,7 @@ package vbr.ynov.com.projetschools;
 
 public class Schools {
 
+    private Integer id;
     private double longitude;
     private double latitude;
     private String name;
@@ -14,13 +15,18 @@ public class Schools {
     private Integer nbEleves;
 
 
-    public Schools(double longitude, double latitude, String name, String status, String address, Integer nbEleves) {
+    public Schools(int id, double longitude, double latitude, String name, String status, String address, Integer nbEleves) {
+        this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
         this.name = name;
         this.status = status;
         this.address = address;
         this.nbEleves = nbEleves;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public double getLongitude() {

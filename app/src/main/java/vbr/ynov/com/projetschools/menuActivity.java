@@ -27,4 +27,9 @@ public class menuActivity extends AppCompatActivity {
         Intent EntryActivityIntent = new Intent(menuActivity.this, configActivity.class);
         startActivity(EntryActivityIntent);
     }
+
+    public void OnCreateClick(View btnMenu_Add){
+        Intent EntryActivityIntent = new Intent(menuActivity.this, createActivity.class);
+        startActivity(EntryActivityIntent);
+    }
 }

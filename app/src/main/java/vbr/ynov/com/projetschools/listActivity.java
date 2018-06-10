@@ -1,76 +1,48 @@
 package vbr.ynov.com.projetschools;
 
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class listActivity extends AppCompatActivity {
 
     private ListView lstView;
-    private SchoolsListAdapter adapter;
+    private SchoolsListAdapter schoolAdapter;
     private List<Schools> mSchoolsList;
+    private static SharedPreferences configPreferences;
+    private SharedPreferences.Editor configPrefsEditor;
+    private String isPublicPrivate;
     String urlWebService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        initializeTopBar();
+        MainMethods.initializeTopBar(findViewById(android.R.id.content), listActivity.this, "Liste des écoles", "#ff8800", false);
         lstView = (ListView) findViewById(R.id.lstView);
-        urlWebService = "https://schoolz-api.herokuapp.com/api/v1/schools";
+        configPreferences = getSharedPreferences("configPrefs", MODE_PRIVATE);
+        configPrefsEditor = configPreferences.edit();
+        isPublicPrivate = configPreferences.getString("isPublicPrivate", "0");
+        if("0".equals(isPublicPrivate)){
+            urlWebService = "https://schoolz-api.herokuapp.com/api/v1/schools";
+        }else if("1".equals(isPublicPrivate)){
+            urlWebService = "https://schoolz-api.herokuapp.com/api/v1/schools?status=public";
+        }else if("2".equals(isPublicPrivate)){
+            urlWebService = "https://schoolz-api.herokuapp.com/api/v1/schools?status=private";
+        }else {
+            urlWebService = "https://schoolz-api.herokuapp.com/api/v1/schools";
+        }
+
         new listActivity.loadDataAsyncTask().execute();
-    }
-
-    public void initializeTopBar(){
-
-        TextView txtBar = (TextView) findViewById(R.id.menuTitleBar);
-        txtBar.setText("Liste des écoles");
-
-        ImageButton rightBtnBar = (ImageButton) findViewById(R.id.menuBtnRight);
-        rightBtnBar.setVisibility(View.INVISIBLE);
-
-        ImageButton leftBtnBar = findViewById(R.id.menuBtnLeft);
-        final View.OnClickListener listenerManager = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.menuBtnLeft:returnToMenu();
-                        break;
-
-                    default:break;
-                }
-            }
-        };
-        leftBtnBar.setOnClickListener(listenerManager);
-
-        LinearLayout llBar =(LinearLayout)findViewById(R.id.layoutTopBar);
-        llBar.setBackgroundColor(Color.parseColor("#ff8800"));
-    }
-
-    public void returnToMenu(){
-        finish();
     }
 
     public class loadDataAsyncTask extends AsyncTask<String, String, String> {
@@ -110,6 +82,7 @@ public class listActivity extends AppCompatActivity {
             JSONArray arrayValues = new JSONArray(Json);
             for (int i=0; i < arrayValues.length(); i++) {
                 JSONObject schoolObject = arrayValues.getJSONObject(i);
+                Integer id = Integer.parseInt(schoolObject.getString("id"));
                 Double longitude = Double.parseDouble(schoolObject.getString("longitude"));
                 Double latitude = Double.parseDouble(schoolObject.getString("latitude"));
                 Integer nbEleves = Integer.parseInt(schoolObject.getString("students_count"));
@@ -117,15 +90,13 @@ public class listActivity extends AppCompatActivity {
                 String address = schoolObject.getString("address");
                 String status = schoolObject.getString("status");
 
-                mSchoolsList.add(new Schools(longitude, latitude, name, status, address, nbEleves));
+                mSchoolsList.add(new Schools(id, longitude, latitude, name, status, address, nbEleves));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-
-    adapter = new SchoolsListAdapter(getApplicationContext(), mSchoolsList);
-    lstView.setAdapter(adapter);
+    schoolAdapter = new SchoolsListAdapter(getApplicationContext(), mSchoolsList);
+    lstView.setAdapter(schoolAdapter);
     }
 }

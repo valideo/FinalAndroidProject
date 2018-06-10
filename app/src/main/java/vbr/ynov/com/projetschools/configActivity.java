@@ -2,8 +2,8 @@ package vbr.ynov.com.projetschools;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -15,32 +15,78 @@ public class configActivity extends AppCompatActivity {
     private SharedPreferences.Editor configPrefsEditor;
     private ImageButton imgBtnPublic;
     private ImageButton ImgBtnPrivate;
+    private String isPublicPrivate;
 
-    String isPublicPrivate = configPreferences.getString("isPublicPrivate", null);
-    public String valueTest = getSharedPreferences("text", 0).getString("isPublicPrivate",null);
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
-        imgBtnPublic = (ImageButton) findViewById(R.id.publicSchoolsBtn);
-        ImgBtnPrivate = (ImageButton) findViewById(R.id.privateSchoolsBtn);
+        this.imgBtnPublic = (ImageButton) findViewById(R.id.publicSchoolsBtn);
+        this.ImgBtnPrivate = (ImageButton) findViewById(R.id.privateSchoolsBtn);
+
+        configPreferences = getSharedPreferences("configPrefs", MODE_PRIVATE);
+        configPrefsEditor = configPreferences.edit();
+        isPublicPrivate = configPreferences.getString("isPublicPrivate", "0");
+
         initializeTopBar();
         initializeButtons();
     }
 
-    public void initializeButtons(){
-        if(isPublicPrivate == "0"){
-            imgBtnPublic.setColorFilter(Color.argb(50,0,0,0));
-        }else if(isPublicPrivate == "1"){
+    //Ispublicprivate = 0 => on afiche tout - =1 => on affiche que public - =2 => on affiche que privé - =3 quand aucun selectionné
 
-        }else if(isPublicPrivate == "2"){
+    public void initializeButtons(){ //Set l'opacité des btn
 
+        if("0".equals(isPublicPrivate)){
+            this.imgBtnPublic.setAlpha(100);
+            this.ImgBtnPrivate.setAlpha(100);
+        }else if("1".equals(isPublicPrivate)){
+            this.imgBtnPublic.setAlpha(100);
+            this.ImgBtnPrivate.setAlpha(20);
+        }else if("2".equals(isPublicPrivate)){
+            this.imgBtnPublic.setAlpha(20);
+            this.ImgBtnPrivate.setAlpha(100);
+        }else if("3".equals(isPublicPrivate)){
+            this.imgBtnPublic.setAlpha(20);
+            this.ImgBtnPrivate.setAlpha(20);
         }
     }
 
-    public void initializeTopBar(){
+    public void OnclickBtnPrivate(View privateSchoolsBtn){
+
+        if("0".equals(isPublicPrivate)){
+            commitConf("1");
+        }else if("1".equals(isPublicPrivate)){
+            commitConf("0");
+        }else if("2".equals(isPublicPrivate)){
+            commitConf("3");
+        }else if("3".equals(isPublicPrivate)){
+            commitConf("2");
+        }
+    }
+
+    public void OnclickBtnPublic(View publicSchoolsBtn){
+
+        if("0".equals(isPublicPrivate)){
+            commitConf("2");
+        }else if("1".equals(isPublicPrivate)){
+            commitConf("3");
+        }else if("2".equals(isPublicPrivate)){
+            commitConf("0");
+        }else if("3".equals(isPublicPrivate)){
+            commitConf("1");
+        }
+    }
+
+    public void commitConf(String value){ //Actualise valeur de variable global configuration
+        configPrefsEditor.putString("isPublicPrivate", value);
+        configPrefsEditor.commit();
+        isPublicPrivate = configPreferences.getString("isPublicPrivate", "0");
+        initializeButtons();
+    }
+
+    public void initializeTopBar(){ //
 
         TextView txtBar = (TextView) findViewById(R.id.menuTitleBar);
         txtBar.setText("Configuration");
@@ -67,6 +113,11 @@ public class configActivity extends AppCompatActivity {
     }
 
     public void returnToMenu(){
-        finish();
+        if("3".equals(isPublicPrivate)){
+            MainMethods.showAlert(this,"Vous devez séléctionner au moins un type de données à afficher");
+        }
+        else {
+            finish();
+        }
     }
 }

@@ -6,4 +6,214 @@
     android:layout_height="match_parent"
     tools:context="vbr.ynov.com.projetschools.createActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/action_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="50dp"
+        android:paddingTop="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <TextView
+                android:id="@+id/txtvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Nom*"
+                android:textSize="15dp"
+                tools:text="Nom*" />
+
+            <EditText
+                android:id="@+id/editTxtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Adresse complète*"
+                android:textSize="15dp"
+                tools:text="Adresse complète*" />
+
+            <EditText
+                android:id="@+id/editTxtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Ouvertures"
+                android:textSize="15dp"
+                tools:text="Ouvertures" />
+
+            <EditText
+                android:id="@+id/editTxtOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Numéro de téléphone"
+                android:textSize="15dp"
+                tools:text="Numéro de téléphone" />
+
+            <EditText
+                android:id="@+id/editTxtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Email*"
+                android:textSize="15dp"
+                tools:text="Email*" />
+
+            <EditText
+                android:id="@+id/editTxtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Latitude*"
+                android:textSize="15dp"
+                tools:text="Latitude*" />
+
+            <EditText
+                android:id="@+id/editTxtLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvLng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Longitude*"
+                android:textSize="15dp"
+                tools:text="Longitude*" />
+
+            <EditText
+                android:id="@+id/editTxtLng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvNbEtu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Nombre d'étudiants*"
+                android:textSize="15dp"
+                tools:text="Nombre d'étudiants*" />
+
+            <EditText
+                android:id="@+id/editTxtNbEtu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="none"
+                android:paddingLeft="10dp"
+                android:text="Status*"
+                android:textSize="15dp"
+                tools:text="Status*" />
+
+            <ToggleButton
+                android:id="@+id/toggleStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/background_light"
+                android:text="ToggleButton"
+                android:textOff="private"
+                android:textOn="public" />
+
+            <Button
+                android:id="@+id/btnValidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@android:color/holo_purple"
+                android:text="Ajouter"
+                tools:text="Ajouter" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </android.support.constraint.ConstraintLayout>
